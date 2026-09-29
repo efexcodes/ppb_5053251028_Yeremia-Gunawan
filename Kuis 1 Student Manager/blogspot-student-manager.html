@@ -1,0 +1,179 @@
+<!-- Tempel di Blogger: buat postingan baru > ubah mode dari "Tampilan Tulis" ke "Tampilan HTML" > tempel seluruh isi file ini. -->
+
+<p>Nama: <b>Yeremia Gunawan</b> &middot; NRP: <b>5053251028</b><br />
+Mata Kuliah: Pemrograman Perangkat Bergerak &middot; Kuis 1</p>
+
+<h2>1. Deskripsi Studi Kasus</h2>
+
+<p>Staf administrasi program studi biasanya mencatat data mahasiswa secara manual di buku atau spreadsheet. Cara ini lambat dan mudah salah: NIM bisa ganda, data lama sulit dicari, dan perbaikan atau penghapusan data tidak tercatat dengan rapi.</p>
+
+<p><b>Student Manager</b> adalah aplikasi Android sederhana untuk mengelola data mahasiswa langsung dari ponsel. Pengguna dapat melihat daftar mahasiswa, menambah data baru, mengubah data yang salah, menghapus data yang tidak berlaku, dan mencari mahasiswa tertentu dengan cepat.</p>
+
+<h3>Data Mahasiswa</h3>
+
+<table style="border-collapse: collapse; width: 100%; margin-bottom: 16px;">
+  <tr style="background: #e8f0fe;">
+    <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Atribut</th>
+    <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Aturan</th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;"><b>NIM</b></td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Wajib diisi, hanya angka, dan harus unik</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;"><b>Nama</b></td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Wajib diisi</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;"><b>Program Studi</b></td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Wajib dipilih: Informatika, Sistem Informasi, Teknik Komputer, Desain Komunikasi Visual, Manajemen, Akuntansi</td>
+  </tr>
+</table>
+
+<h2>2. Fitur Aplikasi</h2>
+
+<table style="border-collapse: collapse; width: 100%; margin-bottom: 16px;">
+  <tr style="background: #e8f0fe;">
+    <th style="border: 1px solid #ccc; padding: 8px; text-align: center; width: 40px;">No</th>
+    <th style="border: 1px solid #ccc; padding: 8px; text-align: left; width: 28%;">Fitur</th>
+    <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Penjelasan</th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">1</td>
+    <td style="border: 1px solid #ccc; padding: 8px;"><b>Splash Screen</b></td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Tampilan awal selama &plusmn;1,5 detik berisi logo dan nama aplikasi.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">2</td>
+    <td style="border: 1px solid #ccc; padding: 8px;"><b>Daftar Mahasiswa</b></td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Layar utama berisi kartu mahasiswa (avatar, nama, NIM, program studi) dan teks &quot;Jumlah mahasiswa: N&quot;.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">3</td>
+    <td style="border: 1px solid #ccc; padding: 8px;"><b>Pencarian</b></td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Menyaring daftar secara langsung saat mengetik, berdasarkan nama, NIM, atau program studi. Ada tombol &times; untuk menghapus kata kunci.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">4</td>
+    <td style="border: 1px solid #ccc; padding: 8px;"><b>Tambah Mahasiswa</b></td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Tombol + (bulat, biru) membuka form NIM, Nama, dan dropdown Program Studi, dengan tombol Batal dan Simpan.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">5</td>
+    <td style="border: 1px solid #ccc; padding: 8px;"><b>Edit Mahasiswa</b></td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Ikon pensil membuka form yang sudah terisi data lama.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">6</td>
+    <td style="border: 1px solid #ccc; padding: 8px;"><b>Hapus Mahasiswa</b></td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Ikon tempat sampah membuka dialog konfirmasi &quot;Hapus Mahasiswa?&quot; sebelum data dihapus.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">7</td>
+    <td style="border: 1px solid #ccc; padding: 8px;"><b>Empty State</b></td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Muncul &quot;Belum ada data mahasiswa&quot; saat daftar kosong, atau &quot;Mahasiswa tidak ditemukan&quot; saat pencarian tanpa hasil.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">8</td>
+    <td style="border: 1px solid #ccc; padding: 8px;"><b>Menu &#8942;</b></td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Refresh (mengosongkan pencarian), Tentang Aplikasi, dan Keluar.</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">9</td>
+    <td style="border: 1px solid #ccc; padding: 8px;"><b>Validasi Input</b></td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Pesan kesalahan bila kolom kosong, NIM bukan angka, atau NIM sudah terdaftar. <i>(tambahan)</i></td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px; text-align: center;">10</td>
+    <td style="border: 1px solid #ccc; padding: 8px;"><b>Umpan Balik</b></td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Snackbar setelah tambah, ubah, dan hapus data. <i>(tambahan)</i></td>
+  </tr>
+</table>
+
+<h2>3. Alur Navigasi</h2>
+
+<pre style="background: #f5f5f5; padding: 12px; border-radius: 6px; overflow-x: auto;">Splash &rarr; Daftar Mahasiswa &#9472;&#9472; Cari (filter di layar yang sama)
+                          &#9500;&#9472; Tambah &rarr; Simpan / Batal &rarr; Daftar
+                          &#9500;&#9472; Edit   &rarr; Simpan / Batal &rarr; Daftar
+                          &#9500;&#9472; Hapus  &rarr; Dialog konfirmasi &rarr; Daftar
+                          &#9492;&#9472; Menu &#8942; &rarr; Refresh / Tentang / Keluar</pre>
+
+<h2>4. Teknologi</h2>
+
+<ul>
+  <li><b>Kotlin</b> sebagai bahasa pemrograman</li>
+  <li><b>Jetpack Compose</b> untuk membangun antarmuka</li>
+  <li><b>Material 3</b> sebagai sistem desain</li>
+  <li><b>Android ViewModel</b> untuk menyimpan state agar tidak hilang saat layar diputar</li>
+</ul>
+
+<p>Data disimpan di memori, dimulai dari tiga data contoh (Budi Santoso, Siti Aminah, Andi Wijaya) seperti pada wireframe. Data kembali ke data contoh setelah aplikasi ditutup sepenuhnya.</p>
+
+<h2>5. Struktur Proyek</h2>
+
+<pre style="background: #f5f5f5; padding: 12px; border-radius: 6px; overflow-x: auto;">app/src/main/java/com/example/studentmanager/
+&#9500;&#9472;&#9472; MainActivity.kt          Titik masuk aplikasi
+&#9500;&#9472;&#9472; StudentViewModel.kt      State aplikasi dan aksi tambah/ubah/hapus
+&#9500;&#9472;&#9472; data/Student.kt          Model, opsi prodi, filter pencarian, validasi
+&#9492;&#9472;&#9472; ui/
+    &#9500;&#9472;&#9472; StudentApp.kt        Memilih layar + penanganan tombol Back
+    &#9500;&#9472;&#9472; SplashScreen.kt
+    &#9500;&#9472;&#9472; StudentListScreen.kt Daftar, pencarian, menu, dialog hapus
+    &#9500;&#9472;&#9472; StudentFormScreen.kt Form tambah/edit + dropdown prodi
+    &#9500;&#9472;&#9472; Overlays.kt          Menu dan dialog yang digambar di dalam layar
+    &#9492;&#9472;&#9472; theme/               Warna, tipografi, tema</pre>
+
+<h2>6. Skenario Pengujian</h2>
+
+<table style="border-collapse: collapse; width: 100%; margin-bottom: 16px;">
+  <tr style="background: #e8f0fe;">
+    <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Langkah</th>
+    <th style="border: 1px solid #ccc; padding: 8px; text-align: left;">Hasil yang Diharapkan</th>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">Buka aplikasi</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Splash sebentar, lalu daftar dengan 3 mahasiswa</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">Ketik &quot;budi&quot; di pencarian</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Hanya Budi Santoso tampil, jumlah menjadi 1</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">Tekan + lalu Simpan dengan kolom kosong</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Pesan kesalahan muncul pada ketiga kolom</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">Isi NIM yang sudah ada</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Muncul &quot;NIM sudah terdaftar&quot;</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">Isi data valid, pilih prodi, Simpan</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Mahasiswa baru muncul di daftar, snackbar tampil</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">Tekan ikon pensil, ubah nama, Simpan</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Data berubah pada daftar</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">Tekan ikon tempat sampah, lalu Hapus</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Dialog konfirmasi muncul, data terhapus setelah dikonfirmasi</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">Hapus semua mahasiswa</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Tampil &quot;Belum ada data mahasiswa&quot;</td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid #ccc; padding: 8px;">Tekan menu &#8942;</td>
+    <td style="border: 1px solid #ccc; padding: 8px;">Muncul Refresh, Tentang Aplikasi, dan Keluar</td>
+  </tr>
+</table>
+
+<h2>7. Keterbatasan dan Pengembangan Lanjutan</h2>
+
+<ul>
+  <li>Data belum tersimpan permanen; dapat dikembangkan dengan Room atau DataStore.</li>
+  <li>Teks antarmuka masih ditulis langsung di kode; dapat dipindahkan ke <code>strings.xml</code> untuk mendukung multibahasa.</li>
+  <li>Menu Refresh saat ini hanya mengosongkan pencarian karena belum ada sumber data eksternal.</li>
+</ul>
+
+<!-- Tips: tambahkan screenshot aplikasi lewat tombol "Sisipkan gambar" di Tampilan Tulis, di bawah bagian yang sesuai. -->
