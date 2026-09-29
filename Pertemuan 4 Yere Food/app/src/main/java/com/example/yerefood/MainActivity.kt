@@ -7,13 +7,11 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.BorderStroke
-import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
@@ -24,15 +22,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.automirrored.filled.MenuBook
 import androidx.compose.material.icons.filled.Remove
-import androidx.compose.material.icons.filled.RestaurantMenu
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
@@ -49,13 +46,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
@@ -64,7 +61,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
-import com.example.yerefood.ui.theme.FoodGreenSurface
+import com.example.yerefood.ui.theme.FoodBlue
+import com.example.yerefood.ui.theme.FoodGreen
 import com.example.yerefood.ui.theme.FoodRed
 import com.example.yerefood.ui.theme.YereFoodTheme
 
@@ -94,21 +92,21 @@ private val mainDish = MenuItem(
     imageUrl = "https://images.unsplash.com/photo-1512058564366-18510be2db19?w=800&q=80"
 )
 
-private val otherMenuItems = listOf(
-    MenuItem(
-        name = "Burger Spesial",
-        price = 32_000,
-        imageUrl = "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=400&q=80"
-    ),
-    MenuItem(
-        name = "Chicken Rice Bowl",
-        price = 28_000,
-        imageUrl = "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&q=80"
-    ),
-    MenuItem(
-        name = "Minuman Segar",
-        price = 12_000,
-        imageUrl = "https://images.unsplash.com/photo-1544145945-f90425340c7e?w=400&q=80"
+data class MenuDetail(
+    val category: String,
+    val portion: String,
+    val prepTime: String,
+    val rating: String,
+    val ingredients: List<String>
+)
+
+private val mainDishDetail = MenuDetail(
+    category = "Makanan Utama",
+    portion = "1 porsi",
+    prepTime = "15 menit",
+    rating = "4.8 (120 ulasan)",
+    ingredients = listOf(
+        "Nasi putih", "Telur", "Ayam suwir", "Wortel", "Kacang polong", "Kecap manis", "Bawang goreng"
     )
 )
 
@@ -139,120 +137,24 @@ fun FoodOrderingScreen(modifier: Modifier = Modifier) {
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(20.dp)
         ) {
             AppHeader(cartCount = cartCount)
 
-            Spacer(modifier = Modifier.height(20.dp))
+            Column(modifier = Modifier.padding(20.dp)) {
+                FoodImage(item = mainDish)
 
-            FoodDetailCard(
-                item = mainDish,
-                quantity = quantity,
-                isFavorite = isFavorite,
-                onIncrease = { quantity++ },
-                onDecrease = { if (quantity > 1) quantity-- },
-                onAddToCart = {
-                    cartCount += quantity
-                    Toast.makeText(
-                        context,
-                        "${quantity}x ${mainDish.name} ditambahkan ke keranjang",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                },
-                onToggleMenu = { showMenu = !showMenu },
-                onToggleFavorite = { isFavorite = !isFavorite }
-            )
+                Spacer(modifier = Modifier.height(16.dp))
 
-            Spacer(modifier = Modifier.height(20.dp))
-
-            AnimatedVisibility(visible = showMenu) {
-                MenuList(items = otherMenuItems)
-            }
-        }
-    }
-}
-
-@Composable
-private fun AppHeader(cartCount: Int) {
-    Row(
-        modifier = Modifier.fillMaxWidth(),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(text = "🍔", fontSize = 26.sp)
-        Spacer(modifier = Modifier.width(8.dp))
-        Text(
-            text = "Yere Food",
-            fontSize = 22.sp,
-            fontWeight = FontWeight.Bold,
-            color = MaterialTheme.colorScheme.primary
-        )
-        Spacer(modifier = Modifier.weight(1f))
-        Box {
-            Icon(
-                imageVector = Icons.Filled.ShoppingCart,
-                contentDescription = "Keranjang",
-                tint = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.size(28.dp)
-            )
-            if (cartCount > 0) {
-                Box(
-                    modifier = Modifier
-                        .align(Alignment.TopEnd)
-                        .size(16.dp)
-                        .clip(CircleShape)
-                        .background(FoodRed),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        text = cartCount.toString(),
-                        color = Color.White,
-                        fontSize = 9.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun FoodDetailCard(
-    item: MenuItem,
-    quantity: Int,
-    isFavorite: Boolean,
-    onIncrease: () -> Unit,
-    onDecrease: () -> Unit,
-    onAddToCart: () -> Unit,
-    onToggleMenu: () -> Unit,
-    onToggleFavorite: () -> Unit
-) {
-    Card(
-        modifier = Modifier.fillMaxWidth(),
-        shape = RoundedCornerShape(20.dp),
-        elevation = CardDefaults.cardElevation(defaultElevation = 3.dp)
-    ) {
-        Column {
-            AsyncImage(
-                model = item.imageUrl,
-                contentDescription = item.name,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .aspectRatio(16f / 10f)
-            )
-
-            Column(modifier = Modifier.padding(18.dp)) {
                 Text(
-                    text = item.name,
+                    text = mainDish.name,
                     fontSize = 20.sp,
                     fontWeight = FontWeight.Bold
                 )
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(2.dp))
                 Text(
-                    text = formatRupiah(item.price),
-                    fontSize = 18.sp,
-                    fontWeight = FontWeight.SemiBold,
-                    color = MaterialTheme.colorScheme.primary
+                    text = formatRupiah(mainDish.price),
+                    fontSize = 16.sp,
+                    fontWeight = FontWeight.SemiBold
                 )
                 Spacer(modifier = Modifier.height(6.dp))
                 Text(
@@ -264,40 +166,39 @@ private fun FoodDetailCard(
                 Spacer(modifier = Modifier.height(16.dp))
 
                 Row(
+                    modifier = Modifier.fillMaxWidth(),
                     verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(16.dp)
+                    horizontalArrangement = Arrangement.spacedBy(16.dp, Alignment.CenterHorizontally)
                 ) {
-                    QuantityButton(icon = Icons.Filled.Remove, onClick = onDecrease)
+                    QuantityButton(icon = Icons.Filled.Remove, filled = false, onClick = {
+                        if (quantity > 1) quantity--
+                    })
                     Text(
                         text = quantity.toString(),
                         fontSize = 18.sp,
                         fontWeight = FontWeight.Bold,
-                        modifier = Modifier.width(24.dp),
+                        modifier = Modifier.width(20.dp),
                         textAlign = TextAlign.Center
                     )
-                    QuantityButton(icon = Icons.Filled.Add, onClick = onIncrease)
-
-                    Spacer(modifier = Modifier.weight(1f))
-
-                    Text(
-                        text = "Total: ${formatRupiah(item.price * quantity)}",
-                        fontSize = 13.sp,
-                        fontWeight = FontWeight.Medium,
-                        color = Color.Gray
-                    )
+                    QuantityButton(icon = Icons.Filled.Add, filled = true, onClick = { quantity++ })
                 }
 
                 Spacer(modifier = Modifier.height(18.dp))
 
                 Button(
-                    onClick = onAddToCart,
+                    onClick = {
+                        cartCount += quantity
+                        Toast.makeText(
+                            context,
+                            "${quantity}x ${mainDish.name} ditambahkan ke keranjang",
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(48.dp),
-                    shape = RoundedCornerShape(12.dp),
-                    colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary
-                    )
+                    shape = RoundedCornerShape(24.dp),
+                    colors = ButtonDefaults.buttonColors(containerColor = FoodGreen)
                 ) {
                     Icon(Icons.Filled.ShoppingCart, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(8.dp))
@@ -307,13 +208,15 @@ private fun FoodDetailCard(
                 Spacer(modifier = Modifier.height(10.dp))
 
                 OutlinedButton(
-                    onClick = onToggleMenu,
+                    onClick = { showMenu = !showMenu },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(48.dp),
-                    shape = RoundedCornerShape(12.dp)
+                    shape = RoundedCornerShape(24.dp),
+                    border = BorderStroke(1.dp, FoodBlue),
+                    colors = ButtonDefaults.outlinedButtonColors(contentColor = FoodBlue)
                 ) {
-                    Icon(Icons.Filled.RestaurantMenu, contentDescription = null, modifier = Modifier.size(18.dp))
+                    Icon(Icons.AutoMirrored.Filled.MenuBook, contentDescription = null, modifier = Modifier.size(18.dp))
                     Spacer(modifier = Modifier.width(8.dp))
                     Text("Lihat Menu")
                 }
@@ -321,11 +224,11 @@ private fun FoodDetailCard(
                 Spacer(modifier = Modifier.height(10.dp))
 
                 OutlinedButton(
-                    onClick = onToggleFavorite,
+                    onClick = { isFavorite = !isFavorite },
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(48.dp),
-                    shape = RoundedCornerShape(12.dp),
+                    shape = RoundedCornerShape(24.dp),
                     border = BorderStroke(1.dp, FoodRed),
                     colors = ButtonDefaults.outlinedButtonColors(contentColor = FoodRed)
                 ) {
@@ -337,76 +240,149 @@ private fun FoodDetailCard(
                     Spacer(modifier = Modifier.width(8.dp))
                     Text("Favorit")
                 }
+
+                Spacer(modifier = Modifier.height(20.dp))
+
+                AnimatedVisibility(visible = showMenu) {
+                    MenuDetailSection(detail = mainDishDetail)
+                }
             }
         }
     }
 }
 
 @Composable
-private fun QuantityButton(icon: androidx.compose.ui.graphics.vector.ImageVector, onClick: () -> Unit) {
+private fun AppHeader(cartCount: Int) {
+    Box(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(FoodGreen)
+            .padding(horizontal = 20.dp, vertical = 16.dp)
+    ) {
+        Row(
+            modifier = Modifier.fillMaxWidth(),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(text = "🍔", fontSize = 22.sp)
+            Spacer(modifier = Modifier.width(8.dp))
+            Text(
+                text = "Yere Food",
+                fontSize = 20.sp,
+                fontWeight = FontWeight.Bold,
+                color = Color.White
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            Box {
+                Icon(
+                    imageVector = Icons.Filled.ShoppingCart,
+                    contentDescription = "Keranjang",
+                    tint = Color.White,
+                    modifier = Modifier.size(26.dp)
+                )
+                if (cartCount > 0) {
+                    Box(
+                        modifier = Modifier
+                            .align(Alignment.TopEnd)
+                            .size(16.dp)
+                            .clip(RoundedCornerShape(50))
+                            .background(FoodRed),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(
+                            text = cartCount.toString(),
+                            color = Color.White,
+                            fontSize = 9.sp,
+                            fontWeight = FontWeight.Bold
+                        )
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun FoodImage(item: MenuItem) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        shape = RoundedCornerShape(18.dp),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+    ) {
+        AsyncImage(
+            model = item.imageUrl,
+            contentDescription = item.name,
+            contentScale = ContentScale.Crop,
+            modifier = Modifier
+                .fillMaxWidth()
+                .aspectRatio(4f / 3f)
+        )
+    }
+}
+
+@Composable
+private fun QuantityButton(icon: ImageVector, filled: Boolean, onClick: () -> Unit) {
+    val shape = RoundedCornerShape(10.dp)
     IconButton(
         onClick = onClick,
         modifier = Modifier
-            .size(36.dp)
-            .clip(CircleShape)
-            .background(FoodGreenSurface)
+            .size(40.dp)
+            .clip(shape)
+            .background(if (filled) FoodBlue else Color.White)
+            .border(width = 1.dp, color = if (filled) FoodBlue else Color.LightGray, shape = shape)
     ) {
         Icon(
             imageVector = icon,
             contentDescription = null,
-            tint = MaterialTheme.colorScheme.primary,
+            tint = if (filled) Color.White else Color.DarkGray,
             modifier = Modifier.size(18.dp)
         )
     }
 }
 
 @Composable
-private fun MenuList(items: List<MenuItem>) {
-    Column {
-        Text(
-            text = "Menu Lainnya",
-            fontSize = 16.sp,
-            fontWeight = FontWeight.Bold
-        )
-        Spacer(modifier = Modifier.height(10.dp))
-        items.forEach { menuItem ->
-            MenuRow(item = menuItem)
-            Spacer(modifier = Modifier.height(10.dp))
-        }
-    }
-}
-
-@Composable
-private fun MenuRow(item: MenuItem) {
+private fun MenuDetailSection(detail: MenuDetail) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         shape = RoundedCornerShape(14.dp),
         elevation = CardDefaults.cardElevation(defaultElevation = 1.dp)
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(10.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            AsyncImage(
-                model = item.imageUrl,
-                contentDescription = item.name,
-                contentScale = ContentScale.Crop,
-                modifier = Modifier
-                    .size(56.dp)
-                    .clip(RoundedCornerShape(10.dp))
+        Column(modifier = Modifier.padding(16.dp)) {
+            Text(
+                text = "Detail Menu",
+                fontSize = 16.sp,
+                fontWeight = FontWeight.Bold
             )
-            Spacer(modifier = Modifier.width(12.dp))
-            Column(modifier = Modifier.weight(1f)) {
-                Text(text = item.name, fontWeight = FontWeight.SemiBold, fontSize = 14.sp)
-                Text(
-                    text = formatRupiah(item.price),
-                    fontSize = 13.sp,
-                    color = MaterialTheme.colorScheme.primary
-                )
-            }
+            Spacer(modifier = Modifier.height(12.dp))
+
+            DetailRow(label = "Kategori", value = detail.category)
+            Spacer(modifier = Modifier.height(6.dp))
+            DetailRow(label = "Porsi", value = detail.portion)
+            Spacer(modifier = Modifier.height(6.dp))
+            DetailRow(label = "Waktu Saji", value = detail.prepTime)
+            Spacer(modifier = Modifier.height(6.dp))
+            DetailRow(label = "Rating", value = "⭐ ${detail.rating}")
+
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = "Bahan-bahan",
+                fontSize = 14.sp,
+                fontWeight = FontWeight.SemiBold
+            )
+            Spacer(modifier = Modifier.height(4.dp))
+            Text(
+                text = detail.ingredients.joinToString(", "),
+                fontSize = 13.sp,
+                color = Color.Gray
+            )
         }
+    }
+}
+
+@Composable
+private fun DetailRow(label: String, value: String) {
+    Row(modifier = Modifier.fillMaxWidth()) {
+        Text(text = label, fontSize = 13.sp, color = Color.Gray, modifier = Modifier.width(100.dp))
+        Text(text = value, fontSize = 13.sp, fontWeight = FontWeight.Medium)
     }
 }
 
