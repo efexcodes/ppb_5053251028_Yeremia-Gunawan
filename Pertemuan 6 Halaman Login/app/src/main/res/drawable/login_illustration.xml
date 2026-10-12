@@ -1,0 +1,100 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="300dp"
+    android:height="260dp"
+    android:viewportWidth="300"
+    android:viewportHeight="260">
+    <!-- Platform -->
+    <path
+        android:fillColor="#F0F0F6"
+        android:pathData="M20,215a130,38 0,1 0,260 0a130,38 0,1 0,-260 0z" />
+
+    <!-- Gears and cloud -->
+    <path
+        android:fillColor="#E4E4EA"
+        android:fillType="evenOdd"
+        android:pathData="M60,18a22,22 0,1 0,0.1 0zM60,32a8,8 0,1 1,-0.1 0z" />
+    <path
+        android:fillColor="#E4E4EA"
+        android:fillType="evenOdd"
+        android:pathData="M88,52a16,16 0,1 0,0.1 0zM88,62a6,6 0,1 1,-0.1 0z" />
+    <path
+        android:fillColor="#E4E4EA"
+        android:pathData="M232,30h40a10,10 0,0 0,0 -20h-4a14,14 0,0 0,-26 4a8,8 0,0 0,-10 16z" />
+
+    <!-- Phone body -->
+    <path
+        android:fillColor="#1F4E5A"
+        android:pathData="M115,8h80a10,10 0,0 1,10 10v182a10,10 0,0 1,-10 10h-80a10,10 0,0 1,-10 -10v-182a10,10 0,0 1,10 -10z" />
+    <!-- Phone screen -->
+    <path
+        android:fillColor="#E9F0F5"
+        android:pathData="M117,20h76a4,4 0,0 1,4 4v170a4,4 0,0 1,-4 4h-76a4,4 0,0 1,-4 -4v-170a4,4 0,0 1,4 -4z" />
+
+    <!-- Card on screen -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:strokeColor="#6C63C7"
+        android:strokeWidth="1"
+        android:pathData="M123,38h64a3,3 0,0 1,3 3v100a3,3 0,0 1,-3 3h-64a3,3 0,0 1,-3 -3v-100a3,3 0,0 1,3 -3z" />
+    <path
+        android:fillColor="#A9D8EC"
+        android:pathData="M155,56m-14,0a14,14 0,1 1,28 0a14,14 0,1 1,-28 0" />
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M155,52m-4.5,0a4.5,4.5 0,1 1,9 0a4.5,4.5 0,1 1,-9 0M146,66a9,7 0,0 1,18 0z" />
+    <path
+        android:fillColor="#4B3BA3"
+        android:pathData="M130,84h28v5h-28z" />
+    <path
+        android:fillColor="#6C63C7"
+        android:pathData="M130,98h50v6h-50zM130,110h50v6h-50zM130,122h50v6h-50z" />
+    <path
+        android:fillColor="#4B3BA3"
+        android:pathData="M148,134h32v6h-32z" />
+
+    <!-- Large plant -->
+    <path
+        android:fillColor="#3A3CA5"
+        android:pathData="M80,208C60,190 58,150 82,128C98,148 100,185 80,208z" />
+    <path
+        android:fillColor="#4A4CC4"
+        android:pathData="M82,208C98,196 108,172 98,150C84,160 76,186 82,208z" />
+    <path
+        android:fillColor="#2C2E8A"
+        android:pathData="M80,208C74,185 76,160 82,132L83,134C79,160 78,185 82,208z" />
+    <!-- Small plant -->
+    <path
+        android:fillColor="#3A3CA5"
+        android:pathData="M54,236C40,224 40,204 54,194C64,206 64,224 54,236z" />
+    <path
+        android:fillColor="#4A4CC4"
+        android:pathData="M56,236C68,230 72,216 66,204C56,210 52,224 56,236z" />
+
+    <!-- Woman: legs -->
+    <path
+        android:fillColor="#4B3BA3"
+        android:pathData="M226,142h30l-2,70h-10l-3,-50l-4,50h-10z" />
+    <!-- Shoes -->
+    <path
+        android:fillColor="#2B2145"
+        android:pathData="M220,212h13v5h-17zM244,212h12v5h-14z" />
+    <!-- Hair -->
+    <path
+        android:fillColor="#2B2145"
+        android:pathData="M234,92C232,70 258,66 260,92C262,110 260,128 256,134L240,134C244,120 236,108 234,92z" />
+    <!-- Torso -->
+    <path
+        android:fillColor="#A5D8DD"
+        android:pathData="M232,100h26l4,46h-34z" />
+    <!-- Arm pointing to phone -->
+    <path
+        android:fillColor="#F2B59B"
+        android:pathData="M234,106L204,78L200,82L230,114z" />
+    <!-- Head -->
+    <path
+        android:fillColor="#F2B59B"
+        android:pathData="M246,94m-10,0a10,10 0,1 1,20 0a10,10 0,1 1,-20 0" />
+    <path
+        android:fillColor="#2B2145"
+        android:pathData="M236,92C236,80 256,80 256,92C250,88 242,88 236,92z" />
+</vector>
