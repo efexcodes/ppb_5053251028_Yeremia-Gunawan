@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>LibraryReg Mockup</title>
+<style>
+  :root{--primary:#1D4ED8;--primary-c:#DBE7FF;--accent:#F59E0B;--bg:#F5F7FB;--surf:#fff;--text:#1B1F2A;--muted:#667085;--line:#D9DFEA;--err:#D92D20;--ok:#12A150}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:Roboto,"Segoe UI",Arial,sans-serif;background:#E6EAF2;width:400px;height:800px;display:flex;align-items:center;justify-content:center}
+  .phone{width:360px;height:760px;background:var(--bg);border-radius:34px;border:8px solid #111827;overflow:hidden;position:relative;display:flex;flex-direction:column}
+  .status{height:28px;display:flex;justify-content:space-between;align-items:center;padding:0 18px;font-size:12px;font-weight:600;color:var(--text);background:var(--primary-c)}
+  .appbar{background:var(--primary-c);padding:6px 16px 14px;display:flex;align-items:center;gap:12px;min-height:56px}
+  .appbar h1{font-size:20px;font-weight:600;color:var(--text);flex:1}
+  .appbar .sub{font-size:12px;color:var(--muted);font-weight:400}
+  .logo{width:34px;height:34px;border-radius:10px;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:18px}
+  .ico{font-size:22px;color:var(--text);line-height:1}
+  .content{flex:1;overflow:hidden;padding:14px 16px;position:relative}
+  .search{background:var(--surf);border:1px solid var(--line);border-radius:28px;height:48px;display:flex;align-items:center;gap:10px;padding:0 16px;font-size:14px;color:var(--muted)}
+  .search b{color:var(--text);font-weight:400;flex:1}
+  .chips{display:flex;gap:8px;margin:12px 0}
+  .chip{border:1px solid var(--line);background:var(--surf);border-radius:9px;padding:6px 12px;font-size:12.5px;color:var(--text)}
+  .chip.on{background:var(--primary);color:#fff;border-color:var(--primary)}
+  .card{background:var(--surf);border-radius:14px;padding:12px;margin-bottom:10px;display:flex;align-items:center;gap:12px;box-shadow:0 1px 3px rgba(16,24,40,.1)}
+  .avatar{width:44px;height:44px;border-radius:50%;background:var(--primary-c);color:var(--primary);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:16px;flex-shrink:0}
+  .card .t{flex:1;min-width:0}
+  .card .n{font-size:15px;font-weight:600}
+  .card .s{font-size:12px;color:var(--muted);margin-top:2px}
+  .badge{display:inline-block;font-size:10.5px;padding:2px 8px;border-radius:8px;margin-top:5px;font-weight:600}
+  .b-mhs{background:#DCFCE7;color:#166534}.b-dsn{background:#FEF3C7;color:#92400E}.b-stf{background:#E0E7FF;color:#3730A3}
+  .acts{display:flex;flex-direction:column;gap:8px;font-size:16px}
+  .fab{position:absolute;right:16px;bottom:18px;background:var(--accent);color:#1B1F2A;border-radius:16px;height:52px;padding:0 20px;display:flex;align-items:center;gap:8px;font-weight:600;font-size:14px;box-shadow:0 4px 10px rgba(0,0,0,.25)}
+  .field{margin-bottom:11px}
+  .field label{font-size:11.5px;color:var(--muted);display:block;margin-bottom:3px;margin-left:4px}
+  .input{background:var(--surf);border:1.5px solid var(--line);border-radius:10px;min-height:42px;padding:10px 12px;font-size:13.5px;color:var(--text);display:flex;align-items:center;justify-content:space-between}
+  .input.ph{color:#98A2B3}.input.focus{border-color:var(--primary)}.input.error{border-color:var(--err)}
+  .input.area{min-height:60px;align-items:flex-start}
+  .err{color:var(--err);font-size:11px;margin:3px 0 0 4px}
+  .seg{display:flex;gap:8px}
+  .seg div{flex:1;text-align:center;padding:9px 0;border:1.5px solid var(--line);border-radius:10px;font-size:13px;background:var(--surf)}
+  .seg .on{background:var(--primary-c);border-color:var(--primary);color:var(--primary);font-weight:600}
+  .btn{background:var(--primary);color:#fff;border-radius:24px;height:46px;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:15px;margin-top:12px}
+  .btn.out{background:transparent;color:var(--primary);border:1.5px solid var(--primary)}
+  .btn.del{background:#FEE4E2;color:var(--err)}
+  .hero{display:flex;flex-direction:column;align-items:center;padding:6px 0 14px}
+  .hero .avatar{width:80px;height:80px;font-size:30px}
+  .hero .n{font-size:19px;font-weight:700;margin-top:10px}
+  .hero .s{font-size:13px;color:var(--muted);margin-top:2px}
+  .info{background:var(--surf);border-radius:14px;padding:4px 14px;box-shadow:0 1px 3px rgba(16,24,40,.1)}
+  .row{display:flex;gap:12px;padding:11px 0;border-bottom:1px solid #EEF1F6;align-items:flex-start}
+  .row:last-child{border:0}
+  .row .i{width:22px;font-size:16px;text-align:center}
+  .row .l{font-size:11px;color:var(--muted)}.row .v{font-size:13.5px;margin-top:1px}
+  .scrim{position:absolute;inset:0;background:rgba(16,24,40,.55);display:flex;align-items:center;justify-content:center;padding:28px}
+  .dialog{background:#fff;border-radius:24px;padding:22px}
+  .dialog h2{font-size:19px;margin:6px 0 8px}.dialog p{font-size:13.5px;color:var(--muted);line-height:1.45}
+  .dialog .r{display:flex;justify-content:flex-end;gap:8px;margin-top:18px;font-weight:600;font-size:14px}
+  .dialog .r span{padding:9px 14px;border-radius:20px}
+  .empty{display:flex;flex-direction:column;align-items:center;text-align:center;margin-top:60px;color:var(--muted);font-size:13px;gap:8px}
+  .empty .big{font-size:56px}
+  .snack{position:absolute;left:16px;right:16px;bottom:16px;background:#1F2937;color:#fff;border-radius:10px;padding:13px 16px;font-size:13px;display:flex;justify-content:space-between}
+  .snack b{color:#FBBF24}
+  mark{background:#FDE68A;border-radius:3px}
+</style>
+</head>
+<body>
+<div class="phone" id="app"></div>
+<script>
+const people=[
+ ["Andi Pratama","2210512001","Informatika","mhs","Mahasiswa"],
+ ["Budi Santoso","198503122010","Sistem Informasi","dsn","Dosen"],
+ ["Citra Lestari","2210512045","Teknik Industri","mhs","Mahasiswa"],
+ ["Dewi Anggraini","197812052005","Perpustakaan","stf","Staf"],
+];
+const ini=n=>n.split(" ").map(w=>w[0]).slice(0,2).join("");
+const card=(p,q)=>`<div class="card"><div class="avatar">${ini(p[0])}</div><div class="t"><div class="n">${q?p[0].replace(new RegExp("("+q+")","i"),"<mark>$1</mark>"):p[0]}</div><div class="s">${p[1]} · ${p[2]}</div><span class="badge b-${p[3]}">${p[4]}</span></div><div class="acts"><span>✏️</span><span>🗑️</span></div></div>`;
+const status=`<div class="status"><span>09:41</span><span>▲ ◖ 100%</span></div>`;
+const bar=(title,back,extra="")=>`<div class="appbar">${back?'<span class="ico">←</span>':'<div class="logo">📚</div>'}<h1>${title}${extra}</h1></div>`;
+const list=(items,q,chip="Semua")=>`${status}${bar("LibraryReg",false,'<div class="sub">'+items.length+' anggota terdaftar</div>')}
+<div class="content"><div class="search">🔍 <b>${q||'<span style="color:#98A2B3">Cari nama atau NIM/NIP</span>'}</b>${q?'✕':''}</div>
+<div class="chips">${["Semua","Mahasiswa","Dosen","Staf"].map(c=>`<span class="chip ${c==chip?'on':''}">${c}</span>`).join("")}</div>
+${items.length?items.map(p=>card(p,q)).join(""):'<div class="empty"><div class="big">🔎</div><b style="color:#1B1F2A;font-size:15px">Anggota tidak ditemukan</b>Coba kata kunci lain atau<br>periksa penulisan nama / NIM.</div>'}
+<div class="fab">＋ Daftar</div></div>`;
+const f=(l,v,cls="",e="",icon="")=>`<div class="field"><label>${l}</label><div class="input ${cls}${v?'':' ph'}"><span>${v||''}</span>${icon}</div>${e?`<div class="err">${e}</div>`:''}</div>`;
+const form=(title,d,e,btn)=>`${status}${bar(title,true)}<div class="content" style="padding-top:12px">
+${f("Nama Lengkap *",d.n,e.n?"error":"",e.n)}
+${f("NIM / NIP *",d.id,e.id?"error":"",e.id)}
+${f("Program Studi *",d.ps,"","","▾")}
+${f("Alamat *",d.a,"area "+(e.a?"error":""),e.a)}
+${f("Nomor Telepon *",d.t,e.t?"error":"",e.t)}
+${f("Email *",d.e,e.e?"error":"",e.e)}
+<div class="field"><label>Jenis Keanggotaan *</label><div class="seg">${["Mahasiswa","Dosen","Staf"].map(x=>`<div class="${x==d.j?'on':''}">${x}</div>`).join("")}</div></div>
+<div class="btn">${btn}</div></div>`;
+const detail=p=>`${status}${bar("Detail Anggota",true,"")}<div class="content"><div class="hero"><div class="avatar">AP</div><div class="n">Andi Pratama</div><div class="s">2210512001</div><span class="badge b-mhs">Mahasiswa</span></div>
+<div class="info">
+<div class="row"><span class="i">🎓</span><div><div class="l">Program Studi</div><div class="v">Informatika</div></div></div>
+<div class="row"><span class="i">🏠</span><div><div class="l">Alamat</div><div class="v">Jl. Mawar No. 12, Surabaya</div></div></div>
+<div class="row"><span class="i">📞</span><div><div class="l">Nomor Telepon</div><div class="v">081234567890</div></div></div>
+<div class="row"><span class="i">✉️</span><div><div class="l">Email</div><div class="v">andi.pratama@student.ac.id</div></div></div>
+<div class="row"><span class="i">📅</span><div><div class="l">Tanggal Daftar</div><div class="v">20 Oktober 2026</div></div></div></div>
+<div class="btn">✏️ Edit Data</div><div class="btn del">🗑️ Hapus Anggota</div></div>`;
+const S={
+ 1:()=>list(people),
+ 2:()=>form("Pendaftaran Anggota",{j:"Mahasiswa"},{},"Daftar"),
+ 3:()=>form("Pendaftaran Anggota",{n:"Andi Pratama",id:"22A1",ps:"Informatika",a:"",t:"0812",e:"andi.pratama@",j:"Mahasiswa"},{id:"NIM/NIP harus 8–15 digit angka",a:"Alamat wajib diisi",t:"Nomor telepon harus 10–13 digit",e:"Format email tidak valid"},"Daftar"),
+ 4:()=>detail(),
+ 5:()=>detail()+`<div class="scrim"><div class="dialog"><div style="font-size:26px">🗑️</div><h2>Hapus anggota?</h2><p>Data <b>Andi Pratama</b> (2210512001) akan dihapus dari daftar anggota dan tidak dapat dikembalikan.</p><div class="r"><span style="color:#1D4ED8">Batal</span><span style="background:#D92D20;color:#fff">Hapus</span></div></div></div>`,
+ 6:()=>list([people[2]],"cit"),
+ 7:()=>form("Edit Anggota",{n:"Andi Pratama",id:"2210512001",ps:"Informatika",a:"Jl. Mawar No. 12, Surabaya",t:"081234567890",e:"andi.pratama@student.ac.id",j:"Mahasiswa"},{},"Simpan Perubahan"),
+ 8:()=>list(people)+`<div class="snack"><span>Anggota berhasil didaftarkan</span><b>OK</b></div>`,
+};
+const s=new URLSearchParams(location.search).get("s")||1;
+document.getElementById("app").innerHTML=S[s]();
+</script>
+</body>
+</html>
