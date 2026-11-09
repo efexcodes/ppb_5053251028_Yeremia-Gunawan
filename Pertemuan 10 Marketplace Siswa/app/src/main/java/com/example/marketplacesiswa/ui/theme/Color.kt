@@ -1,0 +1,43 @@
+package com.example.marketplacesiswa.ui.theme
+
+import androidx.compose.ui.graphics.Color
+
+// Light - nuansa indigo seperti mockup MarketSiswa
+val IndigoPrimary = Color(0xFF4F46E5)
+val IndigoOnPrimary = Color(0xFFFFFFFF)
+val IndigoContainer = Color(0xFFE0E7FF)
+val IndigoOnContainer = Color(0xFF1E1B6B)
+val SlateSecondary = Color(0xFF475569)
+val SlateSecondaryContainer = Color(0xFFEEF0FF)
+val SlateOnSecondaryContainer = Color(0xFF4338CA)
+val AmberTertiary = Color(0xFFB45309)
+val AmberTertiaryContainer = Color(0xFFFEF3C7)
+val AmberOnTertiaryContainer = Color(0xFF78350F)
+val LightBackground = Color(0xFFF8FAFC)
+val LightSurface = Color(0xFFFFFFFF)
+val LightOnSurface = Color(0xFF0F172A)
+val LightOnSurfaceVariant = Color(0xFF64748B)
+val LightOutline = Color(0xFF94A3B8)
+val LightOutlineVariant = Color(0xFFE2E8F0)
+val LightSurfaceContainer = Color(0xFFF1F5F9)
+val ErrorRed = Color(0xFFDC2626)
+
+// Dark
+val IndigoPrimaryDark = Color(0xFFA5B4FC)
+val IndigoOnPrimaryDark = Color(0xFF1E1B6B)
+val IndigoContainerDark = Color(0xFF3730A3)
+val IndigoOnContainerDark = Color(0xFFE0E7FF)
+val SlateSecondaryDark = Color(0xFFCBD5E1)
+val SlateSecondaryContainerDark = Color(0xFF2B2F55)
+val SlateOnSecondaryContainerDark = Color(0xFFC7D2FE)
+val AmberTertiaryDark = Color(0xFFFCD34D)
+val AmberTertiaryContainerDark = Color(0xFF4A3412)
+val AmberOnTertiaryContainerDark = Color(0xFFFEF3C7)
+val DarkBackground = Color(0xFF0B1020)
+val DarkSurface = Color(0xFF141A2E)
+val DarkOnSurface = Color(0xFFE2E8F0)
+val DarkOnSurfaceVariant = Color(0xFF94A3B8)
+val DarkOutline = Color(0xFF64748B)
+val DarkOutlineVariant = Color(0xFF2A3350)
+val DarkSurfaceContainer = Color(0xFF1B2240)
+val ErrorRedDark = Color(0xFFFCA5A5)
